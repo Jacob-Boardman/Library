@@ -179,20 +179,25 @@ public class LibraryTest {
 		Library libTest = new Library();
 		
 		Book b1 = new Book(0, 500, "The One Book", true, true);
+		Book b2 = new Book(40, 500, "The Two Book", true, true);
 		Map m1 = new Map(1001, 40, "Map of United Kingdom", "United Kingdom", true);
 		Journal j1 = new Journal(2001, 100, "Journal of Interesting Insects", 10, true);
 
 		libTest.addItem(b1);
+		libTest.addItem(b2);
 		libTest.addItem(m1);
 		libTest.addItem(j1);
+		
+		libTest.updateItem(40, new Book(40, 1500, "The Three Book", false, false));
+		libTest.updateItem(40, new Map(1001, 35, "Map of Great Britain", "Great Britain", false));
 		
 		libTest.updateItem(0, new Book(30, 1500, "The Three Book", false, false));
 		libTest.updateItem(1001, new Map(1001, 35, "Map of Great Britain", "Great Britain", false));
 		libTest.updateItem(2001, new Journal(2001, 90, "Interesting Insects", 8, true));
 		
 		assertEquals("The Three Book", libTest.getItems().get(0).getName());
-		assertEquals("Map of Great Britain", libTest.getItems().get(1).getName());
-		assertEquals("Interesting Insects", libTest.getItems().get(2).getName());
+		assertEquals("Map of Great Britain", libTest.getItems().get(2).getName());
+		assertEquals("Interesting Insects", libTest.getItems().get(3).getName());
 	}
 
 }
