@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Library {
 	private List<Item> itemsList = new ArrayList<>();
+	private PersonManager pMan = new PersonManager();
 
 	public void addItem(Item item) {
 		itemsList.add(item);
@@ -14,22 +15,30 @@ public class Library {
 		itemsList.remove(item);
 	}
 
-	public void checkItemIn(Item item) {
+	public void checkItemIn(Item item, Person person) 
+	{
 		item.setCheckedIn(true);
+		
 	}
 
-	public void checkItemOut(Item item) {
-		if (item.isCheckedIn()) {
+	public void checkItemOut(Item item, Person person) 
+	{
+		if (item.isCheckedIn() && person.isRegistered()) 
+		{
 			item.setCheckedIn(false);
-		} else {
+			person.addItem(item);
+			person.setCheckedOutCounter(1);
+		} 
+		else if(!person.isRegistered())
+		{
+			System.out.println("You need to register first");
+			pMan.registerPerson(person);
+		}
+		else
+		{
 			System.out.println("Item is already checked out");
 		}
 	}
-
-	/*
-	 * public void updateItemDetails(int ID, Item item, int pageCount, String name)
-	 * { item.setPageCount(pageCount); item.setID(ID); item.setName(name); }
-	 */
 
 	public void updateItem(int ID, Item item) {
 		try {

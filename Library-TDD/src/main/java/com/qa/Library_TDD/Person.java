@@ -9,6 +9,7 @@ public class Person
 	private int age;
 	private String email;
 	private boolean isRegistered;
+	private int checkedOutCounter;
 	
 	private List<Item> libraryItems = new ArrayList<>();
 	
@@ -19,6 +20,7 @@ public class Person
 		this.email = email;
 		this.isRegistered = isRegistered;
 	}
+	
 
 	public String getName() {
 		return name;
@@ -58,5 +60,19 @@ public class Person
 
 	public void setLibraryItems(List<Item> libraryItems) {
 		this.libraryItems = libraryItems;
+	}
+
+	public void addItem(Item item) {
+		libraryItems.add(item);
+	}
+
+
+	public int getCheckedOutCounter() {
+		return checkedOutCounter;
+	}
+
+
+	public void setCheckedOutCounter(int checkedOutCounter) {
+		this.checkedOutCounter += checkedOutCounter;
 	}
 }

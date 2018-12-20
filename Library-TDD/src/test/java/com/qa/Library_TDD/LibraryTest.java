@@ -104,47 +104,33 @@ public class LibraryTest {
 	public void checkInItem()
 	{
 		Library libTest = new Library();
+		Person p1 = new Person("Mario", 25, "", false);
 		
 		Book b1 = new Book(0, 500, "The One Book", true, false);
 		libTest.addItem(b1);
-		libTest.checkItemIn(b1);
+		libTest.checkItemIn(b1, p1);
 		Book output = (Book) libTest.getItems().get(0);
 		boolean boolOutput = output.isCheckedIn();
 		
 		assertTrue("Boolean was false",boolOutput);
+		//assertTrue
 	}
 	
 	@Test
 	public void checkOutItem()
 	{
 		Library libTest = new Library();
-		
+		Person p1 = new Person("Mario", 25, "", true);
 		Book b1 = new Book(0, 500, "The One Book", true, true);
+		
 		libTest.addItem(b1);
-		libTest.checkItemOut(b1);
-		Book output = (Book) libTest.getItems().get(0);
-		boolean boolOutput = output.isCheckedIn();
+		libTest.checkItemOut(b1, p1);
 		
-		assertFalse("Boolean was true",boolOutput);
+		assertEquals(true, p1.isRegistered());
+		assertSame(b1, p1.getLibraryItems().get(0));
+		assertEquals(1,p1.getCheckedOutCounter());
 	}
-	
-/*	@Test
-	public void updateItemTest()
-	{
-		Library libTest = new Library();
-		
-		Book b1 = new Book(0, 500, "The One Book", true, true);
-		libTest.addItem(b1);
-		Book output = (Book) libTest.getItems().get(0);
-		
-		libTest.updateItemDetails(10, b1, 450, "One Book");
-		
-		assertEquals(450, output.getPageCount());
-		assertEquals(10, output.getID());
-		assertEquals("One Book", output.getName());
-		
-	}
-	*/
+
 	@Test
 	public void registerPersonTest()
 	{
@@ -188,8 +174,8 @@ public class LibraryTest {
 		libTest.addItem(m1);
 		libTest.addItem(j1);
 		
-		libTest.updateItem(40, new Book(40, 1500, "The Three Book", false, false));
-		libTest.updateItem(40, new Map(1001, 35, "Map of Great Britain", "Great Britain", false));
+		//libTest.updateItem(40, new Book(40, 1500, "The Three Book", false, false));
+		//libTest.updateItem(40, new Map(1001, 35, "Map of Great Britain", "Great Britain", false));
 		
 		libTest.updateItem(0, new Book(30, 1500, "The Three Book", false, false));
 		libTest.updateItem(1001, new Map(1001, 35, "Map of Great Britain", "Great Britain", false));
@@ -199,5 +185,6 @@ public class LibraryTest {
 		assertEquals("Map of Great Britain", libTest.getItems().get(2).getName());
 		assertEquals("Interesting Insects", libTest.getItems().get(3).getName());
 	}
+	
 
 }
