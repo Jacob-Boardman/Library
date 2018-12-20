@@ -21,6 +21,15 @@ public class Person
 		this.isRegistered = isRegistered;
 	}
 	
+	public void addItem(Item item) {
+		libraryItems.add(item);
+	}
+	
+	public void removeItem(Item item)
+	{
+		libraryItems.remove(item);
+	}
+	
 
 	public String getName() {
 		return name;
@@ -60,10 +69,6 @@ public class Person
 
 	public void setLibraryItems(List<Item> libraryItems) {
 		this.libraryItems = libraryItems;
-	}
-
-	public void addItem(Item item) {
-		libraryItems.add(item);
 	}
 
 

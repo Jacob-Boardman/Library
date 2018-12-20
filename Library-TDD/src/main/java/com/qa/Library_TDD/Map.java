@@ -1,6 +1,6 @@
 package com.qa.Library_TDD;
 
-public class Map extends Item 
+public class Map extends Item implements Readable
 {
 	private String country;
 
@@ -22,6 +22,12 @@ public class Map extends Item
 	public void update(Item item) {
 		super.update(item);
 		this.setCountry(((Map)item).getCountry());
+	}
+
+	@Override
+	public void readable() {
+		System.out.println("This is a Map");
+		
 	}
 
 }

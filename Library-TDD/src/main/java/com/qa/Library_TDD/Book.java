@@ -1,6 +1,6 @@
 package com.qa.Library_TDD;
 
-public class Book extends Item {
+public class Book extends Item implements Readable{
 	private boolean isHardback;
 
 	Book(int ID, int pageCount, String name, boolean isHardback, boolean isCheckedIn) {
@@ -20,6 +20,12 @@ public class Book extends Item {
 	public void update(Item item) {
 		super.update(item);
 		this.setHardback(((Book) item).isHardback());
+	}
+
+	@Override
+	public void readable() {
+		System.out.println("This is a Book");
+		
 	}
 
 }

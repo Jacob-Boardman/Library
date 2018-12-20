@@ -113,7 +113,7 @@ public class LibraryTest {
 		boolean boolOutput = output.isCheckedIn();
 		
 		assertTrue("Boolean was false",boolOutput);
-		//assertTrue
+		//assertEquals();
 	}
 	
 	@Test
@@ -184,6 +184,21 @@ public class LibraryTest {
 		assertEquals("The Three Book", libTest.getItems().get(0).getName());
 		assertEquals("Map of Great Britain", libTest.getItems().get(2).getName());
 		assertEquals("Interesting Insects", libTest.getItems().get(3).getName());
+	}
+	
+	@Test
+	public void personCheckIn()
+	{
+		Person p1 = new Person("Mario", 25, "example@example.com", true);
+		Library libTest = new Library();
+		
+		Book b1 = new Book(0, 500, "The One Book", true, true);
+		libTest.addItem(b1);
+		p1.addItem(b1);
+		libTest.checkItemIn(b1, p1);
+		p1.removeItem(b1);
+		assertEquals(0, p1.getLibraryItems().size());
+		assertEquals(0, p1.getCheckedOutCounter());
 	}
 	
 

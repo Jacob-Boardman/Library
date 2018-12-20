@@ -17,7 +17,16 @@ public class Library {
 
 	public void checkItemIn(Item item, Person person) 
 	{
-		item.setCheckedIn(true);
+		if(item.isCheckedIn())
+		{
+			System.out.println("Item is already checked in");
+		}
+		else
+		{
+			item.setCheckedIn(true);
+			person.removeItem(item);
+			person.setCheckedOutCounter(-1);
+		}
 		
 	}
 
